@@ -1,0 +1,5 @@
+6
+120
+54
+-8
+The overall max product is: 120
