@@ -1,0 +1,4 @@
+-1000000
+-2000000
+-3000000
+The overall max product is: -1000000
