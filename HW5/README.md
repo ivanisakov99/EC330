@@ -29,18 +29,23 @@ loop in the hash, and exit with the following error message: “Error: Insert ca
         - 
         123 
         -
-      - - - - -
+        -
+        -
+        -
+        -
+        -
+        
       Table 2: 
-      -
-      -
-      -
-      -
-      -
-      6 
-      27 
-      4 
-      -
-      - 
-      1
-      -
-      -
+        -
+        -
+        -
+        -
+        -
+        6 
+        27 
+        4 
+        -
+        - 
+        1
+        -
+        -
