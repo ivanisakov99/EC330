@@ -22,10 +22,10 @@ The *main.cpp* file consists of sample test code for each of the tasks below. Yo
 with variations of this file.
 
 1. Complete the implementation of the templated singly-linked list provided in the header file.
-2. Implement StackFromList, a templated stack class backed by the above singly- linked list. The stack should have a private linked list member, and utilize the
-linked list methods to implement its functionality. The stack should include a constructor, a destructor, a push, a pop, and an isEmpty method (which returns a
+2. Implement *StackFromList*, a templated stack class backed by the above singly- linked list. The stack should have a private linked list member, and utilize the
+linked list methods to implement its functionality. The stack should include a constructor, a destructor, a push, a pop, and an *isEmpty* method (which returns a
 bool).
-3. Implement, QueueFromList, a templated queue class backed by the above singly- linked list. The queue should have a private linked list member, and utilize the
+3. Implement, *QueueFromList*, a templated queue class backed by the above singly- linked list. The queue should have a private linked list member, and utilize the
 linked list methods to implement its functionality. The queue should include a constructor, a destructor, an enqueue (insert to head), a deque (remove from tail),
-and an isEmpty method (which returns a bool).
+and an *isEmpty* method (which returns a bool).
  
