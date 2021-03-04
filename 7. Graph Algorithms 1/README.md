@@ -4,6 +4,7 @@ Consider a 2D array of 1s and 0s of size NxN. The array is a "maze." You must st
 For example, for the following input maze, a shortest path is along bolded numbers and has a length of 9:
 
    **11**001 
+   
    0**1**011 
    0**11**00 
    11**11**0 
