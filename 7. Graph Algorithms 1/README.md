@@ -1,4 +1,4 @@
-### <ins>Maze:</ins>
+### <ins>Problem: Maze</ins>
 Consider a 2D array of 1s and 0s of size NxN. The array is a "maze." You must start from the top left (index (0,0)) and find the length of the shortest path to the bottom right (index (n,n)). You may only travel across elements that have value "1". The top left and bottom right indices are guaranteed to be "1". You may only move horizontally or vertical one index with each step.
 
 For example, for the following input maze, a shortest path is along bolded numbers and has a length of 9:
