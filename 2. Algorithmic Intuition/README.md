@@ -1,4 +1,4 @@
-### <ins>Problem: Algorithmic Intuition</ins>
+### <ins>Problem 3:</ins>
 Write and briefly explain the following C++ function:
 
     long MaxProduct (string file);

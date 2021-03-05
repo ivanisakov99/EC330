@@ -1,4 +1,4 @@
-### <ins>Problem: Templates</ins>
+### <ins>Problem 3:</ins>
 You are provided with a partial implementation of a templated singly-linked list in LinkedList.h, with some missing functionality. It contains a templated Node
 class and a templated LinkedList class. **Do not modify the class definitions**.
 
