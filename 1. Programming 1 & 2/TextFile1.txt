@@ -1,4 +1,0 @@
-Testcase #1
-This line should be printed
-This is not the longest.
-This line should not print.
