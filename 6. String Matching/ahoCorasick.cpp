@@ -95,7 +95,9 @@ int main(void)
     string word;   
     vector<string> patterns;
     while(getline(dictionary, word)){
-        patterns.push_back(word);
+        if(word[0] != 'i' || word[0] != 'I'){
+            patterns.push_back(word);
+        }
     }
 
     AhoCorasick ac(patterns);
@@ -108,8 +110,6 @@ int main(void)
     while (getline(data, word)){
         ac.match(word);
     }
-    
-
 
     return 0;
 }
