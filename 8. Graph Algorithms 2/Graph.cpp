@@ -173,7 +173,7 @@ int MinD(int distance[],  bool ShortestPathSet[], int numV)
 } 
 
 //Using Dijkstra to print out the distance of the shortest path and the number of shortest paths that exist.
-//The modification for this algorithm that I made, was that when I am relexing, instead of checking if d[v] is just bigger than
+//The modification for this algorithm that I made, was that when I am relaxing, instead of checking if d[v] is just bigger than
 //d[u] + weight[u,v]. Check if it is bigger or equal than d[u] + weight[u,v], so that if it is equal to the d[u] + weight[u,v],
 //then there is another shortest path
 void Graph::modifiedDijkstra(int source){
