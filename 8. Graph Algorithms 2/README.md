@@ -1,4 +1,5 @@
 ### <ins>Problem: Graphs</ins>
+
 The *Graph* class, specified in the header file *Graph.h*, represents a directed, weighted graph. Also provided is a sample *main.cpp* file, and a sample 
 input file *graph.txt*. These demonstrate how we will test your code.
 
@@ -43,6 +44,7 @@ Your program should be executed from the command-line with an input file name as
     5:
     
 <ins>Part B:</ins>
+
 Define and implement a public modifiedDijkstra(int source) method for the Graph class. This method should compute and print the weight and number of shortest paths from provided source vertex to all other vertices of the graph. You may assume that the graph is guaranteed to have non-negative weight edges, and that source is a vertex of the graph. The method should work for any source vertex.
 
 In a comment at the top of your method, provide a brief description of how you modified Dijkstra’s shortest path algorithm on a directed graph with non-negative edge weights to count the number of shortest paths from a given source s to a destination node d.

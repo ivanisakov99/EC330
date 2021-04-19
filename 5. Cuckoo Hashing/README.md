@@ -1,4 +1,5 @@
-### <ins>Problem 4:</ins>
+### <ins>Problem: Cuckoo Hashing</ins>
+
 Implement a Cuckoo hash table in which two separate tables are maintained. Each table should have a fixed size of 13. Use the hash function
 *h1(x) = x mod 13* for the first table, and *h2(x) = 11 – (x mod 11)* for the second table.
 

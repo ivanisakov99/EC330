@@ -1,4 +1,5 @@
 ### <ins>Problem: Max Product</ins>
+
 Write and briefly explain the following C++ function:
 
     long MaxProduct (string file);

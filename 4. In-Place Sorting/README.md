@@ -1,31 +1,27 @@
 ### <ins>Problem: In-Place Sorting</ins>
-You are provided with a partial implementation of a templated singly-linked list in LinkedList.h, with some missing functionality. It contains a templated Node
-class and a templated LinkedList class. **Do not modify the class definitions**.
 
-The linked list class contains the following methods:
-• LinkedList – Constructor of a linked list with a head pointing to null (implemented).
-• ~LinkedList – Destructor of a linked list.
-• deleteFromHead – Removes and returns content of the first node of the list. (If the
-list is empty, does nothing.)
-• deleteFromTail – Removes and returns content of last node of the list. (If the list
-is empty, does nothing.)
-• deleteNode – Removes node with provided data from the list.
-• InsertToHead – Inserts node with provided data at the head (implemented).
-• InsertToTail – Inserts node with provided data at the tail.
-• getSize – Returns the number of nodes in the linked list.
-• print - Prints the linked list (implemented).
+We saw in class different sorting algorithms, and we generally assumed the input to be sorted wasj an array. Here, the provided input is an unordered linked
+list of n elements with integer values. We are interested in sorting this list in increasing order (smallest first), in O(n log n) worst case time, while using
+constant space (also called in-place sorting). Note that recursion requires additional space on the stack, so should be avoided in this case.
 
-Notice that while the declaration and implementation of classes are typically split between .cpp and .h files, some compilers cannot handle templates in separate
-files, which is why we include both the declaration and implementation in a single .h file.
+You are provided with the following files: *LNode.h*, *LNode.cpp*, *LSorter.h*, *LSorter.cpp*, and *main.cpp*.
 
-The *main.cpp* file consists of sample test code for each of the tasks below. Your code, which should be added to the provided *LinkedList.h* will be compiled and run
-with variations of this file.
+A linked list node, *LNode*, is implemented in *LNode.h* and *LNode.cpp*.
+The *LSorter* class with the sortList method are declared in *LSorter.h*. The *sortList* method, which you need to implement, is declared as follows:
 
-1. Complete the implementation of the templated singly-linked list provided in the header file.
-2. Implement *StackFromList*, a templated stack class backed by the above singly- linked list. The stack should have a private linked list member, and utilize the
-linked list methods to implement its functionality. The stack should include a constructor, a destructor, a push, a pop, and an *isEmpty* method (which returns a
-bool).
-3. Implement, *QueueFromList*, a templated queue class backed by the above singly- linked list. The queue should have a private linked list member, and utilize the
-linked list methods to implement its functionality. The queue should include a constructor, a destructor, an enqueue (insert to head), a deque (remove from tail),
-and an *isEmpty* method (which returns a bool).
- 
+    class LSorter { 
+      public:
+        LNode* sortList(LNode* head); 
+    };
+    
+This method accepts as input the head node of the list to be sorted, and returns the head node of the sorted linked list. Your implementation should be
+included in the *LSorter.cpp* file. You may add additional classes and/or methods as you see fit, but everything should be included in this file, and none of
+the other files may be modified.
+
+Finally, the provided *main.cpp* file may be used to test your implementation. You may assume that your input consists of non-negative integers with a maximal
+value of 1,000,000.
+
+Modify and submit *LSorter.cpp* only. The submitted file should compile and run with the rest of the files. We will run it against large linked list and measure
+the run time.
+
+Partial credit will be given for an in-place solution with a runtime that is worse than O(n log n).
