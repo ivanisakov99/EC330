@@ -1,4 +1,4 @@
-### <ins>Problem: Max Product</ins>
+# <ins>Problem: Max Product</ins>
 
 Write and briefly explain the following C++ function:
 

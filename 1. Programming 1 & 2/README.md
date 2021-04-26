@@ -1,4 +1,4 @@
-### <ins>Problem 1: Programming I</ins>
+# <ins>Problem 1: Programming I</ins>
 
 Write a C++ program which receives a file name as command line argument, reads all the lines of text in the input file, and prints out the longest line in the file. If there are multiple lines of the same length, the first longest line should be returned. That is, your program should have one single line of output, which is the longest line in the file. If the input file is empty (does not contain any lines) then your program should not print anything.
 
@@ -11,7 +11,7 @@ For the provided sample input file, TextFile.txt, your program should print the 
     > It then reads all the lines of text in the input file, and prints out the longest line in the file.
 
 
-### <ins>Problem 2: Programming II</ins>
+# <ins>Problem 2: Programming II</ins>
 
 A child is jumping up a flight of stairs. The child can jump either 1, 2, or 3 steps at a time. Implement the following recursive C++ function, that returns the
 number of different ways that the child can jump up a flight of n stairs:

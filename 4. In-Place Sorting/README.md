@@ -1,4 +1,4 @@
-### <ins>Problem: In-Place Sorting</ins>
+# <ins>Problem: In-Place Sorting</ins>
 
 We saw in class different sorting algorithms, and we generally assumed the input to be sorted wasj an array. Here, the provided input is an unordered linked
 list of n elements with integer values. We are interested in sorting this list in increasing order (smallest first), in O(n log n) worst case time, while using

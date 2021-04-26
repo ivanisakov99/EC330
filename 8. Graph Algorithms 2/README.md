@@ -1,4 +1,4 @@
-### <ins>Problem: Graphs</ins>
+# <ins>Problem: Graphs</ins>
 
 The *Graph* class, specified in the header file *Graph.h*, represents a directed, weighted graph. Also provided is a sample *main.cpp* file, and a sample 
 input file *graph.txt*. These demonstrate how we will test your code.

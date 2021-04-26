@@ -4,12 +4,13 @@
 #include <cstring>
 #include <stdio.h>
 #include <cctype>
-#include <map> 
+#include <vector>
 
 using namespace std;
 
-int BUIDSearch(char* pat, char* txt) 
-{ 
+/*****************************************  Part A  *****************************************/
+
+int BUIDSearch(char* pat, char* txt){ 
     int M = strlen(pat); 
     int N = strlen(txt); 
     int c = 0;
@@ -65,7 +66,6 @@ int BUIDSearch(char* pat, char* txt)
 
 void fourA(){
     string file = "TinyData.txt";
-    //string file = "BigData.txt";
     std::ifstream is (file, std::ifstream::binary);
     if (is) {
         // get length of file:
@@ -96,130 +96,170 @@ void fourA(){
     }
 }
 
-# define NO_OF_CHARS 256  
-  
-// The preprocessing function for Boyer Moore's  
-// bad character heuristic  
-void badCharHeuristic( char* str, int size, int badchar[NO_OF_CHARS])  
-{  
-    int i;  
-  
-    
-    for (i = 0; i < NO_OF_CHARS; i++) {
-        badchar[i] = -1;  
+/*****************************************  Part B  *****************************************/
+
+class Node {
+public:
+    Node() { mContent = ' '; mMarker = false; }
+    ~Node() {}
+    char content() { return mContent; }
+    void setContent(char c) { mContent = c; }
+    bool wordMarker() { return mMarker; }
+    void setWordMarker() { mMarker = true; }
+    Node* findChild(char c);
+    void appendChild(Node* child) { mChildren.push_back(child); }
+    vector<Node*> children() { return mChildren; }
+
+private:
+    char mContent;
+    bool mMarker;
+    vector<Node*> mChildren;
+};
+
+class Trie {
+public:
+    Trie();
+    ~Trie();
+    void addWord(string s);
+    int searchWord(string s);
+    void deleteWord(string s);
+private:
+    Node* root;
+};
+
+Node* Node::findChild(char c)
+{
+    for ( int i = 0; i < mChildren.size(); i++ ){
+        Node* tmp = mChildren.at(i);
+        if (tmp->content() == c){
+            return tmp;
+        }
     }
-  
-   
-    for (i = 0; i < size; i++) {
-        badchar[(int) str[i]] = i;  
+    return NULL;
+}
+
+Trie::Trie(){
+    root = new Node();
+}
+
+Trie::~Trie(){
+    // Free memory
+}
+
+void Trie::addWord(string s)
+{
+    Node* current = root;
+
+    if ( s.length() == 0 )
+    {
+        current->setWordMarker(); // an empty word
+        return;
     }
-}  
-  
-/* A pattern searching function that uses Bad  
-Character Heuristic of Boyer Moore Algorithm */
-int search(char *pat, char *txt)  
-{  
-    int c = 0;
-    int m = strlen(pat);  
-    int n = strlen(txt);  
-  
-    int badchar[NO_OF_CHARS];  
-  
-    /* Fill the bad character array by calling  
-    the preprocessing function badCharHeuristic()  
-    for given pattern */
-    badCharHeuristic(pat, m, badchar);  
-  
-    int s = 0; 
-    while(s <= (n - m))  
-    {  
-        int j = m - 1;  
-  
-       
-        while(j >= 0 && pat[j] == txt[s + j])  
-            j--;  
-  
-        
-        if (j < 0)  
-        {  
-            c++;
-            
-            s += (s + m < n)? m-badchar[txt[s + m]] : 1;  
-  
-        }  
-  
+
+    for ( int i = 0; i < s.length(); i++ )
+    {        
+        Node* child = current->findChild(s[i]);
+        if ( child != NULL )
+        {
+            current = child;
+        }
         else
-            
-            s += max(1, j - badchar[txt[s + j]]);  
-    }  
-    return c;
-} 
+        {
+            Node* tmp = new Node();
+            tmp->setContent(s[i]);
+            current->appendChild(tmp);
+            current = tmp;
+        }
+        if ( i == s.length() - 1 )
+            current->setWordMarker();
+    }
+}
 
 
+int Trie::searchWord(string s)
+{
+    Node* current = root;
 
+    while (current != NULL){
+        for ( int i = 0; i < s.length(); i++ ){
+            Node* tmp = current->findChild(s[i]);
+            if (tmp == NULL){
+                return 1;
+            }
+            current = tmp;
+        }
+
+        if (current->wordMarker()){
+            return 2;
+        }
+        else{
+            return 0;
+        }
+    }
+
+    return 1;
+}
 
 void fourB(){
-    string file1 = "dictionary.txt";
-    map<string, unsigned int> wordsCount;
-    ifstream dictionary(file1);
-    string word;
-    while (getline(dictionary, word))
+    // Once you make the trie data structure, you insert all the words from the dictionary.txt to populate the trie.
+    Trie* trie = new Trie();
+    string line = "";
+
+    char first_name_letter = 'I';
+    string dictionary_file = "dictionary.txt";
+    string data_file = "TinyData.txt";
+
+    ifstream dictionary(dictionary_file);
+    int countW = 0;
+    while(getline(dictionary, line))
     {
-        if(word[0] == 'I' || word[0] == 'i'){
+        
+        if(line[0] == first_name_letter || line[0] == (first_name_letter + 32)){
             continue;
-        }else{
-            if (wordsCount.find(word) == wordsCount.end()){ // Then we've encountered the word for a first time.
-                wordsCount[word] = 0; // Initialize it to 0.
-            }
-            else{ // Then we've already seen it before..
-                wordsCount[word]++;// Just increment it.
-            } 
+            
+        }
+        else{
+            trie->addWord(line);   
+            countW++;
         }
     }
     dictionary.close();
     
-    //string file2 = "SmallData.txt";
-    string file2 = "TinyData.txt";
-    //string file2 = "BigData.txt";
-    std::ifstream is (file2, std::ifstream::binary);
-    if (is) {
-        // get length of file:
-        is.seekg (0, is.end);
-        int length = is.tellg();
-        is.seekg (0, is.beg);
 
-        char * buffer = new char [length];
-
-        std::cout << "Reading " << length << " characters... \n";
-        // read data as a block:
-        is.read (buffer,length);
-
-        if (is)
-        std::cout << "all characters read successfully.\n";
-        else
-        std::cout << "error: only " << is.gcount() << " could be read\n";
-        is.close();
-
-        int count = 0, num = 0;
-            
-        for (std::map<string, unsigned int>::iterator p = wordsCount.begin(); p != wordsCount.end(); p++){
-            int m = (p->first).length();
-            char pat[m+1];
-            strcpy(pat, (p->first).c_str());
-            num = search(pat, buffer);
-            (p->second) = num;
-            count = count + num;
-        }
+	// Open up the data text file and get the string text for each time there is a space
+    int num_of_words = 0;
+    ifstream data(data_file);
+    while (getline(data, line, ' '))
+    {
         
-        cout << "The number of English words found in " << file2 << " is " << count << endl;
+	// starting from the start of your string text, you iterate through to find any word
+        for (int i = 0; i < line.length(); i++)
+        {
+		// this for loop allows you to make substrings 
+            for (int j = 1; j < line.length() - i + 1; j++)
+            {
+                string testing = line.substr(i,j);
 
-        delete[] buffer;
-       
+                int number = trie->searchWord(testing);
+		// number equals 2 when 
+                if (number == 2){
+		            num_of_words++;
+                    
+                } 
+                else if (number == 1){
+                    break;
+                }
+            }
+        }
     }
+    cout << "Number of words: "<< num_of_words << endl;
+    
+    delete trie;
 }
 
-int LongestPalindrome(char* str) 
-{ 
+/*****************************************  Part C  *****************************************/
+
+int LongestPalindrome(char* str){ 
     // The result (length of LPS) 
     int maxLength = 1; 
   
@@ -275,8 +315,7 @@ int LongestPalindrome(char* str)
 } 
 
 void fourC(){
-    //string file = "TinyData.txt";
-    string file = "BigData.txt";
+    string file = "TinyData.txt";
     std::ifstream is (file, std::ifstream::binary);
     if (is) {
         // get length of file:
@@ -305,13 +344,15 @@ void fourC(){
     }
 }
 
+/*****************************************  Main  *****************************************/
+
 int main(int argc, char** argv){
     cout << "\n\n---------------Problem 5a---------------\n\n" << endl;
-    //fourA();
+    fourA();
     cout << "\n\n---------------Problem 5b---------------\n\n" << endl;
     fourB();
     cout << "\n\n---------------Problem 5c---------------\n\n" << endl;
-    //fourC();
+    fourC();
     
 
 	return 0;
