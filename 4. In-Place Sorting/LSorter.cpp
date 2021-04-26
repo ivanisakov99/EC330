@@ -1,11 +1,3 @@
-//
-//  LSorter.cpp
-//  LSorter
-//
-//  Created by Tali Moreshet
-//  Copyright Â©  Tali Moreshet. All rights reserved.
-//
-
 #include <algorithm>
 #include "LSorter.h"
 using namespace std;

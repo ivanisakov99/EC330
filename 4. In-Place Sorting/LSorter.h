@@ -1,8 +1,3 @@
-//
-//  LSorter.h
-//  LSorter
-//
-
 #ifndef LSorter_h
 #define LSorter_h
 

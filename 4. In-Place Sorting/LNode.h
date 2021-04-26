@@ -1,8 +1,3 @@
-//
-//  LNode.h
-//  LSorter
-//
-
 #ifndef LNode_h
 #define LNode_h
 
