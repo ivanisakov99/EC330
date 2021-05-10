@@ -8,7 +8,7 @@ template <class T>
 class Node {
     public:
         Node();                                         // default constructor
-        Node(const T& data, Node<T>* next = nullptr);   // donstructor
+        Node(const T& data, Node<T>* next = NULL);   // donstructor
         T data;                                         // node data
         Node<T>* next;                                  // node next pointer
 };
@@ -30,14 +30,14 @@ class LinkedList: public Node<T> {
 };
 
 
-    /******* From here down is the content of the LinkedList.cpp file: ***********************/
+/******* From here down is the content of the LinkedList.cpp file: ***********************/
 
-    /* Implementation of Node */
+/* Implementation of Node */
 
 // default constructor
 template<class T>
 Node<T>::Node(){
-
+    
 }
  
 // constructor
@@ -47,175 +47,154 @@ Node<T>::Node(const T& data, Node<T>* next){
     this->next = next;
 }  
  
-    /* Implementation of linked list */
+/* Implementation of linked list */
 
 // constructor
 template <class T>
 LinkedList<T>::LinkedList(){
-    head = nullptr;
+    this->head = NULL;
 }  
 
 // destructor
 template <class T>
 LinkedList<T>::~LinkedList(){
-    Node<T>* current = head;
-    while( current != 0 ) {
-        Node<T>* next = current->next;
+    Node<T>* current = this->head, *next;
+    while(current != NULL){
+        next = current->next;
         delete current;
         current = next;
     }
-    head = 0;
 }  
 
 template <class T>
 T LinkedList<T>::deleteFromHead(){
-    if (this->head == nullptr) {
-        
-    }
-    else{
+    if(this->head != NULL){
         Node<T>* temp = this->head; 
         this->head = this->head->next; 
-  
+
         return temp->data;
-        delete temp; 
     }
+
+    return 0;
 }
 
 template <class T>
 T LinkedList<T>::deleteFromTail(){
-    if(this->head == nullptr){
-    
-    }
-    else{
-        if(this->head->next == nullptr){
-            Node<T>* temp = this->head;
-            delete this->head;
-            this->head = nullptr;
-            return temp->data;
+    if(this->head != NULL){
+        
+        Node<T> *current = this->head, *prev = NULL;
+
+        while(current->next != NULL){
+            prev = current;
+            current = current->next;
         }
 
-        Node<T>* currNode = this->head;
-        while (currNode->next->next != nullptr){
-            currNode = currNode->next;
+        if(prev != NULL){
+            prev->next = current->next;
         }
-        Node<T> *s = currNode->next;
-        delete currNode->next;
-        currNode->next = nullptr;
-        return s->data;
+
+        if(current == this->head){
+            T data = current->data;
+            this->head = NULL;
+            return data;
+        }
+        
+        return current->data;
     }
     
-    
+    return 0;
 }
 
 template <class T>
 void LinkedList<T>::deleteNode(T data){
-    Node<T>* prev = head; 
-    Node<T>* current = head->next; 
+    if(this->head != NULL){
     
-    if(this->head->data == data){
-        this->head = current;
-        delete prev;
+        if(this->head->data == data){
+            this->head = this->head->next;
+            return;
+        }
+    
+        Node<T> *current = this->head, *prev = NULL;
+
+        while(current != NULL && current->data != data){
+            prev = current;
+            current = current->next;
+        }
+
+        if(current == NULL){
+            return;
+        }
+
+        if(prev != NULL){
+            prev->next = current->next;
+            current = NULL;
+        }
+
         return;
     }
-    
-    while(current != nullptr) {
-        if(current->data == data) { 
-            break; 
-        }
-        else{
-            prev = current; 
-            current = current->next; 
-        }
-    }
-    if(current == nullptr) { 
-        return; 
-    } 
-    else{
-        prev->next = current->next; 
-        delete current; 
-        return;
-    }
+
+    return;
 }
 
 template <class T>
 void LinkedList<T>::InsertToHead(T data){
-        Node<T> * newNode = new Node<T>(data, nullptr);
-     
-    if (head == nullptr)
-        head = newNode;
-    else{
-        newNode->next = head;
-        head = newNode;
-    }
+    Node<T> * newHead = new Node<T>(data, this->head);
+    
+    this->head = newHead;
+    return;
 }
 
 template <class T>
 void LinkedList<T>::InsertToTail(T data){
-    Node<T> *last = new Node<T>;
+    Node<T> *tail = new Node<T>(data, NULL);
 
-    last->data = data;
-    last->next = nullptr;
-
-    if (head == nullptr) {
-        head = last;
+    if (this->head == NULL) {
+        this->head = tail;
     }
     else{
-        Node<T> *temp = new Node<T>;
+        Node<T> *temp = head;
 
-        temp = head;
-
-        while (temp->next != nullptr) {
+        while (temp->next != NULL) {
             temp = temp->next;
         }
 
-        temp->next = last;
+        temp->next = tail;
     }
 
     return;
-
 }
 
 template <class T>
 int LinkedList<T>::getSize(){
     int count = 0; 
-    Node<T>* current = head; 
+    Node<T>* temp = head; 
 
-    while(current != nullptr){  
+    while(temp != NULL){  
         count++;  
-        current = current->next;  
+        temp = temp->next;  
     }  
     return count;
  }
 
-
 template <class T>
 void LinkedList<T>::print(){
-    if(head == nullptr){
+    if(head == NULL){
         cout << "Linked list is empty" << endl;;
         return;
     }
-     
-    cout << head->data << " ";
-     
-    if(head->next == nullptr){
-        cout << endl;
-        return;
+
+    Node<T> *temp = this->head;
+
+    while(temp != NULL){
+        cout << temp->data << " ";
+        temp = temp->next;
     }
- 
-    Node<T>* currNode = head->next;
-    Node<T>* prevNode = head;
- 
-     
-    while(currNode->next != nullptr){
-        cout << currNode->data << " ";
-        prevNode = currNode;
-        currNode = currNode->next;
-    }
- 
-    cout << currNode->data << endl;
+    cout << endl;
+
     return;
 }
 
+/* Implementation of Stack */
 
 template <class T>
 class StackFromList: public LinkedList<T> {   //Stack
@@ -231,21 +210,21 @@ class StackFromList: public LinkedList<T> {   //Stack
 
 template <class T>
 StackFromList<T>::StackFromList(){
-    top = nullptr;
+    this->top = NULL;
 }
 
 template <class T>
 StackFromList<T>::~StackFromList(){
-    while(top != nullptr){
-        Node<T> *q = top;
-        top = top->next;
-        delete(q);
+    while(this->top != NULL){
+        Node<T> *q = this->top;
+        this->top = this->top->next;
+        delete q;
     }
 }
 
 template <class T>
 bool StackFromList<T>::isEmpty(){
-    if(top == nullptr){
+    if(this->top == NULL){
         return true;
     }
     else{
@@ -255,26 +234,22 @@ bool StackFromList<T>::isEmpty(){
 
 template <class T>
 void StackFromList<T>::push(T data){
-    Node<T>* temp = new Node<T>;
-    temp->data = data;
-    temp->next = top;
-    top = temp;
+    Node<T>* temp = new Node<T>(data, this->top);
+    this->top = temp;
+    return;
 }
 
 template <class T>
 T StackFromList<T>::pop(){
-    if (top == nullptr) {
-    
+    if(this->top != NULL){
+        Node<T>* temp = this->top;
+        this->top = this->top->next;
+        return temp->data;
     }
-    else{
-        Node<T>* temp = top;
-        top = top->next;
-        T s = temp->data;
-        temp->next = nullptr;
-        delete temp;
-        return s;
-    }
+    return 0;
 }
+
+/* Implementation of Queue */
 
 template <class T>
 class QueueFromList: public LinkedList<T> {    // Queue
@@ -290,21 +265,21 @@ class QueueFromList: public LinkedList<T> {    // Queue
 
 template <class T>
 QueueFromList<T>::QueueFromList(){
-    front = nullptr;
+    this->front = NULL;
 }
     
 template <class T>
 QueueFromList<T>::~QueueFromList(){
-    while(front != nullptr){
-        Node<T> *q = front;
-        front = front->next;
-        delete(q);
+    while(this->front != NULL){
+        Node<T> *q = this->front;
+        this->front = this->front->next;
+        delete q;
     }
 }
     
 template <class T>
 bool QueueFromList<T>::isEmpty(){
-    if(front == nullptr){
+    if(this->front == NULL){
         return true;
     }
     else{
@@ -314,40 +289,31 @@ bool QueueFromList<T>::isEmpty(){
     
 template <class T>
 void QueueFromList<T>::enqueue(T data){
-    Node<T> * newNode = new Node<T>(data, nullptr);
-     
-    if (front == nullptr){
-        front = newNode;
+    Node<T> *newNode = new Node<T>(data, NULL), *temp = this->front;
+    
+    if(this->front == NULL){
+        this->front = newNode;
+        return;
     }
-    else{
-        newNode->next = front;
-        front = newNode;
+
+    while(temp->next != NULL){
+        temp = temp->next;
     }
+
+    temp->next = newNode;
+    
+    return;
 }
     
 template <class T>
 T QueueFromList<T>::dequeue(){
-    if(front == nullptr){
-        return;
+    if(this->front != NULL){
+        T data = this->front->data;
+        this->front = this->front->next;
+        
+        return data;
     }
-    else{
-        if(front->next == nullptr){
-            Node<T>* temp = front;
-            delete front;
-            front = nullptr;
-            return temp -> data;
-        }
-
-        Node<T>* currNode = front;
-        while (currNode -> next -> next != nullptr){
-            currNode = currNode -> next;
-        }
-        Node<T> *s = currNode -> next;
-        delete currNode -> next;
-        currNode -> next = nullptr;
-        return s -> data;
-    }
-    
+    return 0;
 }
 
 #endif /* LinkedList_h */
