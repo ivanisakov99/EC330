@@ -12,7 +12,7 @@ const int LOGICAL_SIZE = 13;
 
 class CuckooHashTable{
   private:
-    vector<vector<string>> contents; // the two hash tables are implemented as a 2D vector
+    vector< vector<string> > contents; // the two hash tables are implemented as a 2D vector
     int currentSize;
   public:
     CuckooHashTable(); // Constructor
@@ -21,4 +21,4 @@ class CuckooHashTable{
     void print(); // print the content of the hash table in the specified format
 };
 
-#endif /* CuckooHashTable_h */
+#endif

@@ -38,6 +38,7 @@ int CuckooHashTable::hashCode(string value, int which){
         case 1: return key % LOGICAL_SIZE; 
         case 2: return hashN - (key % hashN); 
     } 
+    return 0;
 }
 
 void CuckooHashTable::add(string value){
@@ -48,8 +49,8 @@ void CuckooHashTable::add(string value){
     while(count <= 2*LOGICAL_SIZE){
         
         if(count == 2*LOGICAL_SIZE){
-            cout << "Error: Insert causes infinite loop" << endl;
-            exit(EXIT_FAILURE);
+            cout << "Infinite loop detected when " << value << " is inserted" << endl;
+            return;
         }
         
         for (int i = 0; i < ver; i++){ 

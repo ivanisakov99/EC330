@@ -1,9 +1,3 @@
-//
-//  Graph.h
-//
-//  Created by Tali Moreshet. Adapted from Ari Trachtenberg.
-//
-
 #ifndef Graph_h
 #define Graph_h
 

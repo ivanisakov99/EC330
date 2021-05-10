@@ -102,9 +102,10 @@ void Graph::generateGraph(string fileName){
 
     ss1 >> temp;
     //Getting the number of edges
-    if(stringstream(temp) >> integer){
-        numE = integer;
-    }
+    stringstream(temp) >> integer;
+    
+    numE = integer;
+    
     temp = "";
         
     //intialising a 2D array for the edges and weights
