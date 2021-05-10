@@ -2,7 +2,7 @@
 #include "LSorter.h"
 using namespace std;
 
-int SizeOfLinkedList(struct LNode* current){ 
+int SizeOfLinkedList(LNode* current){ 
     int count = 0; 
     while (current != NULL) { 
         current = current->next; 
@@ -12,18 +12,18 @@ int SizeOfLinkedList(struct LNode* current){
 } 
   
 
-void Merge(struct LNode** head1, struct LNode** tail1, struct LNode** head2, struct LNode** tail2){ 
+void Merge(LNode** head1, LNode** tail1, LNode** head2, LNode** tail2){ 
 
-    struct LNode* temp = NULL; 
+    LNode* temp = NULL; 
     if ((*head1)->val > (*head2)->val) { 
         swap(*head1, *head2); 
 
         swap(*tail1, *tail2); 
     } 
 
-    struct LNode* headA = *head1, *tailA = *tail1; 
-    struct LNode* headB = *head2, *tailB = *tail2; 
-    struct LNode* tailB_next = (*tail2)->next; 
+    LNode* headA = *head1, *tailA = *tail1; 
+    LNode* headB = *head2; //, *tailB = *tail2; 
+    LNode* tailB_next = (*tail2)->next; 
     while (headA != tailA && headB != tailB_next){ 
 
         if (headA->next->val > headB->val) { 
@@ -45,13 +45,13 @@ void Merge(struct LNode** head1, struct LNode** tail1, struct LNode** head2, str
 } 
   
 
-void MergeSort(struct LNode** head){ 
+void MergeSort (LNode** head){ 
     if (*head == NULL){
         return; 
     }else{
-        struct LNode* head1 = NULL, *tail1 = NULL; 
-        struct LNode* head2 = NULL, *tail2 = NULL; 
-        struct LNode* p = NULL; 
+        LNode* head1 = NULL, *tail1 = NULL; 
+        LNode* head2 = NULL, *tail2 = NULL; 
+        LNode* p = NULL; 
         int length = SizeOfLinkedList(*head); 
   
         for (int i = 1; i < length; i = i*2){ 
@@ -97,11 +97,11 @@ void MergeSort(struct LNode** head){
         } 
     }
 } 
+
 LNode* LSorter::sortList(LNode* head){
-        MergeSort(&head);
-        LNode* ans = head;
-        return ans;
-    
+    MergeSort(&head);
+    LNode* ans = head;
+    return ans;
 }
 /*
 #include "LSorter.h"

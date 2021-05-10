@@ -9,4 +9,4 @@ public:
     LNode* sortList(LNode* head);
 };
 
-#endif /* LSorter_h */
+#endif

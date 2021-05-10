@@ -1,6 +1,8 @@
 #include "LNode.h"
 
-LNode::LNode(int x) {
+using namespace std;
+
+LNode::LNode(int x){
     val = x;
-    next = nullptr;
+    next = NULL;
 }
