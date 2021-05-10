@@ -8,7 +8,9 @@
 #include<cstdlib>
 
 using namespace std;
-const int LOGICAL_SIZE = 13;
+// const int LOGICAL_SIZE = 13;
+
+#define LOGICAL_SIZE 13
 
 class CuckooHashTable{
   private:
