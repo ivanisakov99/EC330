@@ -1,195 +1,102 @@
 #include <algorithm>
+#include <iostream>
 #include "LSorter.h"
+
 using namespace std;
 
-int SizeOfLinkedList(LNode* current){ 
-    int count = 0; 
-    while (current != NULL) { 
-        current = current->next; 
-        count++; 
-    } 
-    return count; 
-} 
-  
-
-void Merge(LNode** head1, LNode** tail1, LNode** head2, LNode** tail2){ 
-
-    LNode* temp = NULL; 
-    if ((*head1)->val > (*head2)->val) { 
-        swap(*head1, *head2); 
-
-        swap(*tail1, *tail2); 
-    } 
-
-    LNode* headA = *head1, *tailA = *tail1; 
-    LNode* headB = *head2; //, *tailB = *tail2; 
-    LNode* tailB_next = (*tail2)->next; 
-    while (headA != tailA && headB != tailB_next){ 
-
-        if (headA->next->val > headB->val) { 
-            temp = headB->next; 
-
-            headB->next = headA->next; 
-
-            headA->next = headB; 
-            
-            headB = temp; 
-        } 
-        headA = headA->next; 
-    } 
-    if (headA == tailA){
-        headA->next = headB; 
-    }else{
-        *tail2 = *tail1; 
-    }
-} 
-  
-
-void MergeSort (LNode** head){ 
-    if (*head == NULL){
-        return; 
-    }else{
-        LNode* head1 = NULL, *tail1 = NULL; 
-        LNode* head2 = NULL, *tail2 = NULL; 
-        LNode* p = NULL; 
-        int length = SizeOfLinkedList(*head); 
-  
-        for (int i = 1; i < length; i = i*2){ 
-            head1 = *head; 
-            while (head1){ 
-  
-                bool first_iteration = 0; 
-                
-                if (head1 == *head){
-                    first_iteration = 1; 
-                }
-  
-                int counter = i; 
-                tail1 = head1; 
-                while (--counter && tail1->next){
-                    tail1 = tail1->next; 
-                }
-
-                head2 = tail1->next; 
-                if (!head2){
-                    break; 
-                }
-                counter = i; 
-                tail2 = head2; 
-                while (--counter && tail2->next){
-                    tail2 = tail2->next; 
-                }
-  
-                LNode *temp = tail2->next; 
-
-                Merge(&head1, &tail1, &head2, &tail2); 
-
-                if (first_iteration){
-                    *head = head1; 
-                }else{
-                    p->next = head1; 
-                }
-  
-                p = tail2; 
-                head1 = temp; 
-            } 
-            p->next = head1; 
-        } 
-    }
-} 
-
 LNode* LSorter::sortList(LNode* head){
-    MergeSort(&head);
-    LNode* ans = head;
-    return ans;
-}
-/*
-#include "LSorter.h"
-#include "LNode.h"
-#include <iostream>
+    // Size of list
+    int total_size = 1; 
+    
+    // Number of mergeSorts executed
+    int count = 0;
 
-LNode* LSorter::sortList(LNode* head)
-{
-    int size=1;//size of list
-    int count = 0;//number of mergeSorts executed
-    int first_size;//size of first half
-    int second_size;//size of second half
+    // Size of first half
+    int first_size;
+    
+    // Size of second half
+    int second_size;
 
     LNode *end;
     LNode *left;
     LNode *right;
     LNode *next;
 
-    if (head == NULL || head->next == NULL){    //if the list has 0 or 1 elements, return the list
+    // If the list has 0 or 1 elements, return the list
+    if(head == NULL || head->next == NULL){
         return head;
     }
 
-    while (count == 0 || count > 2){    //if program doesn't enter second loop-- list sorted
-        count=1;
-        left=head;
-        end=0;
-        head=0;
+    while(count == 0 || count > 2){    //if program doesn't enter second loop-- list sorted
+        count = 1;
+        left = head;
+        end = NULL;
+        head = NULL;
 
-        while (left != NULL){   //loop through array until end
-            right=left;
-            second_size=size;
-            first_size=0;
-            count++;//keep track of number of Merge Sorts
+        cout << count << endl;
 
-            while (right != NULL && first_size < size){ //change right LNode and size of first half of list to split list
+        while(left != NULL){   //loop through array until end
+            right = left;
+            second_size = total_size;
+            first_size = 0;
+            count++;    //keep track of number of Merge Sorts
+
+            // Change right LNode and size of first half of list to split list
+            while(right != NULL && first_size < total_size){ 
                 first_size++;
-                right=right->next;
+                right = right->next;
             }
 
-           
-            while ((second_size > 0 && right != NULL) || first_size > 0){    //move through both first list and second list, changing next LNode based on sorting conditions
-                if (first_size == 0){   //if first half empty, use next right value
-                    next=right;
-                    right=right->next;
-                    second_size--;
-                }
-                else if (second_size == 0 || right == NULL){     //if second half empty, use next left value
-                    next=left;
-                    left=left->next;
-                    first_size--;
-                }
-
+            // Move through both first list and second list, changing next LNode based on sorting conditions
+            while((second_size > 0 && right != NULL) || first_size > 0){    
                 
-
-                else if (right->val > left->val){   //compare actual values of the LNodes
-                    next=left;
-                    left=left->next;
+                // If first half empty, use next right value
+                if(first_size == 0){   
+                    next = right;
+                    right = right->next;
+                    second_size--;
+                }
+                // If second half empty, use next left value
+                else if(second_size == 0 || right == NULL){     
+                    next = left;
+                    left = left->next;
                     first_size--;
                 }
-                else{   //move through
-                    next=right;
-                    right=right->next;
+                // Compare actual values of the LNodes
+                else if(right->val > left->val){   
+                    next = left;
+                    left = left->next;
+                    first_size--;
+                }
+                // Move through
+                else{   
+                    next = right;
+                    right = right->next;
                     second_size--;
                 }
 
-                if (end != NULL){   //update class variables of end
-                    end->next=next;
+                // Update class variables of end
+                if(end != NULL){   
+                    end->next = next;
                 }
                 else{
-                    head=next;
+                    head = next;
                 }
 
-                //keep track of end of list by setting to next value
-                end=next;
+                // Keep track of end of list by setting to next value
+                end = next;
             }
 
-            //set values for next iteration of mergesort
-            left=right;
+            // Set values for next iteration of mergesort
+            left = right;
 
         }
 
-        //when finished,set pointer to next value to NULL and update size of list
-        end->next=0;
-        size = size * 2;
+        // When finished, set pointer to next value to NULL and update size of list
+        end->next = NULL;
+        total_size = total_size * 2;
 
     }
 
     return head;
-
 }
-*/
