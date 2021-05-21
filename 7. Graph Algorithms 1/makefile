@@ -4,8 +4,8 @@
 TARGET	=  Problem
 
 C_SOURCES =  Problem.cpp 
-C_OBJS     = Problem.o 
-MY_INCLUDES = Problem.h
+C_OBJS     = Problem.o Maze.o
+MY_INCLUDES = Maze.h
 OUTPUTS = Problem.out
 
 CCX = g++

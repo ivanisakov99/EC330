@@ -1,6 +1,0 @@
-Test #0: 9
-Test #1: 0
-Test #2: 3
-Test #3: 23
-Test #4: 199
-Test #5: 335

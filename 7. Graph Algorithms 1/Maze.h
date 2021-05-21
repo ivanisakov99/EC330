@@ -14,22 +14,19 @@
 using namespace std;
 
 //Create a class to store the coordinates of the Maze
-class Coordinates
-{
+class Coordinates{
     public:
-    int x;
-    int y;
+        int x;
+        int y;
 };
  
 //Create a class for the queue used in BFS
-class Queue
-{
+class Queue{
     public:
-    Coordinates points;
-    int path_distance;
+        Coordinates points;
+        int path_distance;
 };
- 
- 
+
 //Using BFS to find the shortest path from the starting point to the end point
 int BFS(char **maze, Coordinates start, Coordinates end)
 {
@@ -48,17 +45,18 @@ int BFS(char **maze, Coordinates start, Coordinates end)
     //Create a queue for BFS
     queue<Queue> queue;
     
-    //Starting distance is 0
+    //Set the distance from the starting point equal to 0
     Queue Q = {start, 0};
     queue.push(Q);
- 
+    
+    
     
     while (!queue.empty())
     {
         Queue current = queue.front();
         Coordinates points = current.points;
  
-        //Check if we have reached the end
+        //Check if we have reached the end point
         if (points.x == end.x && points.y == end.y){
             return current.path_distance + 1;
         }
@@ -69,7 +67,7 @@ int BFS(char **maze, Coordinates start, Coordinates end)
         //Indeces of the nearby points
         int Row[] = {-1, 0, 0, 1};
         int Column[] = {0, -1, 1, 0};
- 
+
         for (int i = 0; i < 4; i++)
         {
             int Next_x = points.x + Row[i];
@@ -90,15 +88,11 @@ int BFS(char **maze, Coordinates start, Coordinates end)
     return 0;
 }
 
-
-
-
- 
 //Driver program to test above function
-int main()
-{
-    string line, file = "maze.txt";
-    
+int Maze(string file){
+    string line;
+    int length;
+
     //Load the file
     ifstream input1(file);
     input1.unsetf(std::ios_base::skipws);
@@ -112,7 +106,7 @@ int main()
     for(int i = 0; i < msize; i++){
         maze[i] = new char[msize + 1];
     }
-
+    
     //Fill the created char array with the elements of the maze
     int j = 0;
     ifstream input2(file);
@@ -121,7 +115,6 @@ int main()
         char arr[size + 1];
         strcpy(arr, line.c_str());
         for(int i = 0; i < msize + 1; i++){
-            
             maze[j][i] = arr[i];
         }
         
@@ -130,15 +123,16 @@ int main()
     //Starting and ending coordinates of the path in the maze
     Coordinates start = {0, 0};
     Coordinates end = {msize - 1, msize - 1};
- 
+    
     //Searching for the shortest path
-    cout << BFS(maze, start, end) << endl;
-
+    length = BFS(maze, start, end);
+    
     //deleting the 2D char array from the heap
-    for(int i = 0; i < msize; i++){
-        delete[] maze[i];
-    }
-    delete[] maze;
+    // for(int i = 0; i < msize; i++){
+    //     delete[] maze[i];
+    // }
+    // delete[] maze;
 
-    return 0;
+    return length;
 }
+

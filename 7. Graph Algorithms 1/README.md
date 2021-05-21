@@ -15,3 +15,17 @@ For example, for the following input maze, a shortest path is along bolded numbe
    110**11**
    
 Your program will open an input file, called maze.txt, containing a maze. Your program, when run with no command-line arguments in the same directory as maze.txt, should read the provided maze from the file, determine N, the dimension of the maze, and output the length of the shortest path to the screen. If no path exists, your program should output ‘0’. You may use the provided maze.txt file to test your code.
+
+### <ins>Expected Outputs:</ins>
+
+      Test Case 0: 9
+
+      Test Case 0: 0
+
+      Test Case 0: 3
+
+      Test Case 0: 23
+
+      Test Case 0: 199
+
+      Test Case 0: 335
