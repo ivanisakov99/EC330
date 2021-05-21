@@ -24,3 +24,56 @@ all the outputs.
          
 The MaxProduct method is a member function of the MaxProductClass class, which should be implemented in MaxProduct.cpp and declared in MaxProduct.h. Try to make
 your function as efficient as you can.
+
+### <ins>Expected Outputs:</ins>
+
+      Test Case 0:
+      
+      6
+      120
+      54
+      -8
+      The overall max product is: 120
+
+      Test Case 1:
+
+      2040
+      238
+      720
+      2720
+      72
+      The overall max product is: 2720
+
+      Test Case 2:
+
+      264355
+      514368
+      528660
+      108864
+      196224
+      The overall max product is: 528660  
+
+      Test Case 3:
+
+      -9
+      8
+      3
+      8
+      4
+      7
+      5  
+      6
+      8
+      9
+      The overall max product is: 9
+
+      Test Case 4:
+
+      -1000000
+      -2000000
+      -3000000
+      The overall max product is: -1000000
+
+      Test Case 5:
+
+      See output5.txt

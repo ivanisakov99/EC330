@@ -6,6 +6,7 @@ TARGET	=  Problem
 C_SOURCES =  Problem.cpp 
 C_OBJS     = Problem.o MaxProduct.o
 MY_INCLUDES = MaxProduct.h
+OUTPUTS = Problem.out
 
 CCX = g++
 CXXFLAGS = -g -std=c++11  -Wall
@@ -24,4 +25,4 @@ Problem :   Problem.o MaxProduct.o
 
 
 clean:
-	rm -f $(TARGET) $(C_OBJS) core *~
+	rm -f $(TARGET) $(C_OBJS) $(OUTPUTS) core *~
