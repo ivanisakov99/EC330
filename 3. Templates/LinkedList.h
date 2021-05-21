@@ -7,40 +7,52 @@ using namespace std;
 template <class T>
 class Node {
     public:
-        Node();                                         // default constructor
-        Node(const T& data, Node<T>* next = NULL);   // donstructor
-        T data;                                         // node data
-        Node<T>* next;                                  // node next pointer
+        // Default constructor
+        Node();
+        // Constructor
+        Node(const T& data, Node<T>* next = NULL);
+        // Node data
+        T data;
+        // Node next pointer
+        Node<T>* next;
 };
 
 template <class T>
 class LinkedList: public Node<T> {
     public:
-        LinkedList();                                   // constructor
-        ~LinkedList();                                  // destructor
-        T deleteFromHead();                             // removes and returns content of head
-        T deleteFromTail();                              // removes and returns content of tail
-        void deleteNode(T data);                         // removes node with specified data
-        void InsertToHead(T data);                      // insert node with data at the head
-        void InsertToTail(T data);                      // insert node with data at the tail
-        int getSize();                                  // returns size of linked list
-        void print();                                   // prints linked list
+        // Constructor
+        LinkedList();
+        // Destructor
+        ~LinkedList();
+        // Removes and returns content of head
+        T deleteFromHead();
+        // Removes and returns content of tail
+        T deleteFromTail();
+        // Removes node with specified data
+        void deleteNode(T data);
+        // Insert node with data at the head
+        void InsertToHead(T data);
+        // Insert node with data at the tail
+        void InsertToTail(T data);
+        // Returns size of linked list
+        int getSize();
+        // Prints linked list
+        void print();
     private:
-        Node<T>* head;                                  // head of linked list
+        // Head of linked list
+        Node<T>* head;
 };
 
 
-/******* From here down is the content of the LinkedList.cpp file: ***********************/
+/******* From here down is the content of the LinkedList.cpp file: *******/
 
 /* Implementation of Node */
 
-// default constructor
 template<class T>
 Node<T>::Node(){
     
 }
- 
-// constructor
+
 template<class T>
 Node<T>::Node(const T& data, Node<T>* next){
     this->data = data;
@@ -49,13 +61,11 @@ Node<T>::Node(const T& data, Node<T>* next){
  
 /* Implementation of linked list */
 
-// constructor
 template <class T>
 LinkedList<T>::LinkedList(){
     this->head = NULL;
 }  
 
-// destructor
 template <class T>
 LinkedList<T>::~LinkedList(){
     Node<T>* current = this->head, *next;
