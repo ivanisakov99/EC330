@@ -1,6 +1,0 @@
-2040
-238
-720
-2720
-72
-The overall max product is: 2720

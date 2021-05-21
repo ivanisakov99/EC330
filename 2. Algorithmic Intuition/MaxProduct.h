@@ -2,6 +2,7 @@
 #define MaxProduct_H
 #include <iostream>
 #include <fstream>
+
 using namespace std;
 
 class MaxProductClass{
