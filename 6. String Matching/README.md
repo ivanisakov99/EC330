@@ -10,6 +10,8 @@ that do not begin with the same letter of the alphabet as your first name (for e
 
 ### <ins>Expected Outputs:</ins>
 
+For TinyData.txt:
+
     Part A) 3
 
     Part B)
@@ -42,3 +44,70 @@ that do not begin with the same letter of the alphabet as your first name (for e
 
     Part C) "bLEQELb"
 
+For SmallData.txt:
+
+    a. 8619
+
+    b.
+    A: 84869399
+    B: 85228464
+    C: 85329107
+    D: 85278605
+    E: 85097546
+    F: 85255875
+    G: 85227231
+    H: 85242564
+    I: 85194025
+    J: 85311391
+    K: 85306078
+    L: 85230293
+    M: 85160974
+    N: 85258448
+    O: 85051705
+    P: 85276527
+    Q: 85394099
+    R: 85300258
+    S: 85221247
+    T: 85200662
+    U: 85083006
+    V: 85358305
+    W: 85209342
+    X: 85368356
+    Y: 85237303
+    Z: 85339565
+
+    c. "  BRpmpRB  " or "Z R XMX R Z"
+
+For BigData.txt:
+
+    a. 44961
+
+    b.
+    A: 441273126
+    B: 443133358
+    C: 443647194
+    D: 443381965
+    E: 442460508
+    F: 443272096
+    G: 443129907
+    H: 443175477
+    I: 442955114
+    J: 443569446
+    K: 443531790
+    L: 443130664
+    M: 442789654
+    N: 443292836
+    O: 442208258
+    P: 443362134
+    Q: 443982959
+    R: 443491704
+    S: 443088589
+    T: 442982840
+    U: 442370361
+    V: 443804847
+    W: 443032962
+    X: 443846641
+    Y: 443181202
+    Z: 443701868
+
+    c. "  BRpmpRB  " or "lj   h   jl"
