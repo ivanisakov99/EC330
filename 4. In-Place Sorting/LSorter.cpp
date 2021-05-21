@@ -33,8 +33,6 @@ LNode* LSorter::sortList(LNode* head){
         end = NULL;
         head = NULL;
 
-        cout << count << endl;
-
         while(left != NULL){   //loop through array until end
             right = left;
             second_size = total_size;

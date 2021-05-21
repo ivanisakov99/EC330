@@ -25,3 +25,21 @@ Modify and submit *LSorter.cpp* only. The submitted file should compile and run 
 the run time.
 
 Partial credit will be given for an in-place solution with a runtime that is worse than O(n log n).
+
+### <ins>Expected Outputs:</ins>
+
+    Test Case 0:
+    Input: 5 1 7 13 2 9
+    Output: 1 2 5 7 9 13
+
+    Test Case 1:
+    Input: 5 1 7 13 2 9 9 9 9 
+    Output: 1 2 5 7 9 9 9 9 13
+
+    Test Case 2:
+    Input: 0
+    Output: 0
+
+    Test Case 3:
+    Input: -5 1 -7 13 -22 9
+    Output: -22 -7 -5 1 9 13
