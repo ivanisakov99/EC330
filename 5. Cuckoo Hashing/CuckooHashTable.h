@@ -8,19 +8,39 @@
 #include<cstdlib>
 
 using namespace std;
-// const int LOGICAL_SIZE = 13;
 
+// Number of hash tables
+#define NUM_OF_TABLES 2
+
+// Size of the hash tables
 #define LOGICAL_SIZE 13
+
+// Hash function 1
+#define h1 13
+
+// Hash function 2
+#define h2 11
 
 class CuckooHashTable{
   private:
-    vector< vector<string> > contents; // the two hash tables are implemented as a 2D vector
-    int currentSize;
+    // The two hash tables are implemented as a 2D vector
+    vector< vector<string> > contents;
+    
+    // The current number of elements in the hash tables
+    int num_of_elements;
+
   public:
-    CuckooHashTable(); // Constructor
-    int hashCode(string value, int which); // compute hash function for input 'value', table 'which'
-    void add(string value); // insert 'value' to hash table
-    void print(); // print the content of the hash table in the specified format
+    // Constructor
+    CuckooHashTable();
+    
+    // Compute the hash function for input 'value' and table 'which'
+    int hashFunction(string value, int which); 
+    
+    // Insert 'value' into the hash tables
+    void add(string value); 
+    
+    // Print the content of the hash tables in the specified format
+    void print(); 
 };
 
 #endif

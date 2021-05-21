@@ -50,3 +50,134 @@ loop in the hash, and exit with the following error message: “Error: Insert ca
         1
         -
         -
+
+
+### <ins>Expected Outputs:</ins>
+
+    Test case 0:
+
+    Table 1:
+    195
+    14
+    -
+    -
+    17
+    -
+    123
+    -
+    -
+    -
+    -
+    -
+    -
+    Table 2:
+    -
+    -
+    -
+    -
+    -
+    6
+    27
+    4
+    -
+    -
+    1
+    -
+    -
+
+    Test case 1: Inserting an already inserted value
+
+    Table 1:
+    195
+    14
+    -
+    -
+    17
+    -
+    123
+    -
+    -
+    -
+    -
+    -
+    -
+    Table 2:
+    -
+    -
+    -
+    -
+    -
+    6
+    27
+    4
+    -
+    -
+    1
+    -
+    -
+
+    Test case 2: Inputs which require moving values from the 2nd table back to the 1st
+
+    Table 1:
+    195
+    14
+    -
+    -
+    30
+    -
+    6
+    -
+    -
+    -
+    -
+    -
+    -
+    Table 2:
+    -
+    -
+    -
+    -
+    -
+    17
+    27
+    4
+    -
+    123
+    1
+    -
+    -
+
+    Test case 3: Insert results in infinite loop
+
+    Infinite loop detected when 212 is inserted
+
+    Test case 4: Fill tables
+
+    Table 1:
+    13
+    1
+    210
+    3
+    4
+    265
+    6
+    397
+    8
+    9
+    270
+    245
+    311
+    Table 2:
+    -
+    10
+    306
+    195
+    205
+    17
+    27
+    15
+    14
+    123
+    12
+    220
+    -

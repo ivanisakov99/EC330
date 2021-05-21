@@ -40,7 +40,7 @@ int main(int argc, char** argv){
   	while (getline(input2, line)) {
     	cht2.add(line);
   	}
-	// cht2.print();
+	cht2.print();
 
 	input2.close();
 
@@ -52,7 +52,6 @@ int main(int argc, char** argv){
   	while (getline(input3, line)) {
     	cht3.add(line);
   	}
-	cht3.print();
 
 	input3.close();
 

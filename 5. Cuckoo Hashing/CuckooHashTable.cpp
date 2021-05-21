@@ -9,78 +9,88 @@
 
 using namespace std;
 
-//Upper bound on number of elements in our set
-#define hashN 11
-
-//Choices for position
-#define ver 2
-
-string dis;
+// string dis;
   
-// Array to store possible positions for a key 
-int pos[ver]; 
+
 
 CuckooHashTable::CuckooHashTable(){ 
-    string number = "";
+    string entry = "";
     vector<string> row;
-    for(int i = 0; i < ver; i++){
+
+    // Initialise as empty
+    for(int i = 0; i < NUM_OF_TABLES; i++){
         contents.push_back (row);
         for(int j = 0; j < LOGICAL_SIZE; j++){
-            contents[i].push_back (number);
+            contents[i].push_back (entry);
         }
     }
-    currentSize = 0;
+
+    // Set the number of elements to nill
+    num_of_elements = 0;
 } 
 
-int CuckooHashTable::hashCode(string value, int which){
-    int key = stoi(value);
+int CuckooHashTable::hashFunction(string value, int which){
     switch (which){ 
-        case 1: return key % LOGICAL_SIZE; 
-        case 2: return hashN - (key % hashN); 
+        // h1(x) = x mod 13
+        case 1: return stoi(value) % h1; 
+
+        // h2(x) = 11 - (x mod 11)
+        case 2: return h2 - (stoi(value) % h2); 
     } 
+
     return 0;
 }
 
 void CuckooHashTable::add(string value){
     string temp;
-    dis = value;
+    string displacement_value = value;
     int count = 0;
     int tid = 0;
-    while(count <= 2*LOGICAL_SIZE){
+
+    // Array of possible positions for a key 
+    int pos[NUM_OF_TABLES]; 
+
+    // while(count <= 2*LOGICAL_SIZE){
+    while(true){
         
-        if(count == 2*LOGICAL_SIZE){
+        // The value that is being rehashed is the same value that is being added,
+        // which means that there is an infinite loop present
+        if(displacement_value == value && count > 0){
             cout << "Infinite loop detected when " << value << " is inserted" << endl;
             return;
         }
         
-        for (int i = 0; i < ver; i++){ 
-            pos[i] = hashCode(dis, i+1); 
+        // Calculate the keys to each table
+        for (int i = 0; i < NUM_OF_TABLES; i++){ 
+            pos[i] = hashFunction(displacement_value, i + 1); 
 
-            if (contents[i][pos[i]] == dis){
+            // Duplicate element
+            if (contents[i][pos[i]] == displacement_value){
                 return; 
             }
         } 
         
-        if (contents[tid][pos[tid]] != ""){ 
-            temp = dis;
-            dis = contents[tid][pos[tid]]; 
+        // Displace the current entry by the new value and rehash
+        if(contents[tid][pos[tid]] != ""){ 
+            temp = displacement_value;
+            displacement_value = contents[tid][pos[tid]]; 
             contents[tid][pos[tid]] = temp;
-            tid = (tid + 1) % ver;
+            // tid++;
+            (++tid >= NUM_OF_TABLES) ? tid = 0 : tid;
             count++;
         } 
+        // Successfully add the new value
         else{
-            contents[tid][pos[tid]] = dis;
-            currentSize++;
+            contents[tid][pos[tid]] = displacement_value;
+            num_of_elements++;
             return;
         }
     }
 }
 
 void CuckooHashTable::print(){ 
-    int n = 1;
-  
-    for (int i=0; i< ver; i++){
-        printf("Table %d:\n", n); 
+    for (int i = 0; i < NUM_OF_TABLES; i++){
+        printf("Table %d:\n", i + 1); 
         for (int j = 0; j < LOGICAL_SIZE; j++){
             if(contents[i][j] == ""){
                 cout << "-" << endl;
@@ -89,6 +99,5 @@ void CuckooHashTable::print(){
                cout << contents[i][j] << endl;
             }
         }
-        n++;
     }
 } 
