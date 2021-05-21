@@ -2,8 +2,8 @@
 #include <string>
 using namespace std;
 
-//Helper Function
-int steps(int n){   //Implementing a recursive function to calculate the number of different ways
+// Implementing a recursive function to calculate the number of different ways
+int steps(int n){
     if(n <= 1){
         return 1;
     }
@@ -16,11 +16,13 @@ int steps(int n){   //Implementing a recursive function to calculate the number 
 
 }
 
-//Main Function
+// Main Function
 int main(int n, char** run){
-    int input = stoi(run[1]);  //Reading input and converting it to an integer
+    // Reading input and converting it to an integer
+    int input = stoi(run[1]);
     
-    cout << steps(input) << endl;   //Printing the output
+    // Printing the output
+    cout << steps(input) << endl;
     
     return 0;
 }
