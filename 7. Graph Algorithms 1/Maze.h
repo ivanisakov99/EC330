@@ -21,16 +21,14 @@ class Coordinates{
 };
  
 //Create a class for the queue used in BFS
-class Queue{
+class Path{
     public:
         Coordinates points;
         int path_distance;
 };
 
 //Using BFS to find the shortest path from the starting point to the end point
-int BFS(char **maze, Coordinates start, Coordinates end)
-{
-    int msize = strlen(*maze) - 1;
+int BFS(char **maze, Coordinates start, Coordinates end, int msize){
     
     //Check that the path is actually reachable
     if (maze[start.x][start.y] == '0' || maze[end.x][end.y] == '0'){
@@ -43,33 +41,31 @@ int BFS(char **maze, Coordinates start, Coordinates end)
     visited[start.x][start.y] = true;
  
     //Create a queue for BFS
-    queue<Queue> queue;
+    queue<Path> queue;
     
     //Set the distance from the starting point equal to 0
-    Queue Q = {start, 0};
+    Path Q = {start, 0};
     queue.push(Q);
     
     
     
-    while (!queue.empty())
-    {
-        Queue current = queue.front();
+    while (!queue.empty()){
+        Path current = queue.front();
         Coordinates points = current.points;
- 
+        queue.pop();
         //Check if we have reached the end point
         if (points.x == end.x && points.y == end.y){
             return current.path_distance + 1;
         }
  
         //If we haven't reached the end, pop the coordinates from the queue
-        queue.pop();
+        
 
         //Indeces of the nearby points
         int Row[] = {-1, 0, 0, 1};
         int Column[] = {0, -1, 1, 0};
 
-        for (int i = 0; i < 4; i++)
-        {
+        for (int i = 0; i < 4; i++){
             int Next_x = points.x + Row[i];
             int Next_y = points.y + Column[i];
              
@@ -78,7 +74,7 @@ int BFS(char **maze, Coordinates start, Coordinates end)
             {
                 //If the next points are 1's and not visited, mark them as visited and enqueue them
                 visited[Next_x][Next_y] = true;
-                Queue Next_Point = { {Next_x, Next_y}, current.path_distance + 1 };
+                Path Next_Point = { {Next_x, Next_y}, current.path_distance + 1 };
                 queue.push(Next_Point);
             }
         }
@@ -125,13 +121,13 @@ int Maze(string file){
     Coordinates end = {msize - 1, msize - 1};
     
     //Searching for the shortest path
-    length = BFS(maze, start, end);
+    length = BFS(maze, start, end, msize);
     
     //deleting the 2D char array from the heap
-    // for(int i = 0; i < msize; i++){
-    //     delete[] maze[i];
-    // }
-    // delete[] maze;
+    for(int i = 0; i < msize; i++){
+        delete[] maze[i];
+    }
+    delete[] maze;
 
     return length;
 }
