@@ -12,9 +12,9 @@ that do not begin with the same letter of the alphabet as your first name (for e
 
 For TinyData.txt:
 
-    Part A) 3
+    Part A: 3
 
-    Part B)
+    Part B:
     A: 549425
     B: 551219
     C: 551672
@@ -42,13 +42,13 @@ For TinyData.txt:
     Y: 551154
     Z: 551648
 
-    Part C) "bLEQELb"
+    Part C: "bLEQELb"
 
 For SmallData.txt:
 
-    a. 8619
+    Part A: 8619
 
-    b.
+    Part B:
     A: 84869399
     B: 85228464
     C: 85329107
@@ -76,13 +76,13 @@ For SmallData.txt:
     Y: 85237303
     Z: 85339565
 
-    c. "  BRpmpRB  " or "Z R XMX R Z"
+    Part C: "  BRpmpRB  " or "Z R XMX R Z"
 
 For BigData.txt:
 
-    a. 44961
+    Part A: 44961
 
-    b.
+    Part B:
     A: 441273126
     B: 443133358
     C: 443647194
@@ -110,4 +110,4 @@ For BigData.txt:
     Y: 443181202
     Z: 443701868
 
-    c. "  BRpmpRB  " or "lj   h   jl"
+    Part C: "  BRpmpRB  " or "lj   h   jl"

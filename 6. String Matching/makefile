@@ -5,7 +5,7 @@ TARGET	=  Problem
 
 C_SOURCES =  Problem.cpp 
 C_OBJS     = Problem.o 
-MY_INCLUDES = Problem.h
+MY_INCLUDES = StringMatching.h
 OUTPUTS = Problem.out
 
 CCX = g++
