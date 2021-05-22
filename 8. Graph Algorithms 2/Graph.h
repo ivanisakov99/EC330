@@ -7,12 +7,11 @@
 
 using namespace std;
 
-// Type definitions
+// Directed edge(u, v)
 typedef pair<int, int> directedEdge;
 
 // Implements a directed, weighted graph
 class Graph {
-    
    public:
       // Constructs a graph with no edges or vertices.
       Graph();

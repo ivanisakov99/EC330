@@ -1,5 +1,4 @@
 #include <iostream>
-#include "Graph.h"
 #include <set>
 #include <map>
 #include <string>
@@ -8,6 +7,9 @@
 #include <vector>
 #include <limits.h>
 #include <stdio.h>
+#include <queue>
+
+#include "Graph.h"
 
 using namespace std;
 
@@ -22,7 +24,7 @@ int Graph::addVertex(){
 }
 
 void Graph::addEdge(directedEdge newEdge, int weight){
-    if((vertices.find(newEdge.first) != vertices.end()) && (vertices.find(newEdge.second) != vertices.end()) ){
+    if((vertices.find(newEdge.first) != vertices.end()) && (vertices.find(newEdge.second) != vertices.end())){
         edges.insert(newEdge);
         weights.insert(pair<directedEdge, int>(newEdge, weight));
     }
@@ -35,16 +37,17 @@ int Graph::getNumVertices(){
 int Graph::getWeight(directedEdge edge){
     map<directedEdge, int>::iterator it;
     it = weights.find(edge);
+    
     return it->second;
 }
 
-bool Graph::isEdge(directedEdge newEdge){
+bool Graph::isEdge(directedEdge Edge){
     set<directedEdge>::iterator it;
-    it = edges.find(newEdge);
-
+    it = edges.find(Edge);
     if(it != edges.end()){
         return true;
-    }else{
+    }
+    else{
         return false;
     }
 }
@@ -87,9 +90,7 @@ void Graph::generateGraph(string fileName){
     ss1 >> temp;
     // Getting the number of edges
     stringstream(temp) >> integer;
-    
     numE = integer;
-    
     temp = "";
         
     // Intialising a 2D array for the edges and weights
@@ -98,16 +99,16 @@ void Graph::generateGraph(string fileName){
         list[i] = new int[3];
     }
 
-    int x = 0, y = 0;
+    int x = 0, y = 0, entry;
+    
     while(getline(input, line)){
-        stringstream ss2;
+        stringstream ss2;   
         ss2 << line;
-        int edge;
 
         while(!ss2.eof()){
             ss2 >> temp;
-            if(stringstream(temp) >> edge){
-                list[x][y] = edge;
+            if(stringstream(temp) >> entry){
+                list[x][y] = entry;
             }
             temp = "";
             y++;
@@ -141,16 +142,15 @@ void Graph::generateGraph(string fileName){
 
 // Function to find the minimum distance in the shortest path set
 int MinD(int distance[],  bool ShortestPathSet[], int numV){ 
-    // Initialize min value 
+    // Initialise min value 
     int min = INT_MAX, min_index; 
   
-    for (int v = 0; v < numV; v++) {
-        if (ShortestPathSet[v] == false && distance[v] <= min) {
+    for(int v = 0; v < numV; v++) {
+        if(ShortestPathSet[v] == false && distance[v] <= min) {
             min = distance[v]; 
             min_index = v; 
         }
     }
-  
     return min_index; 
 } 
 
@@ -183,47 +183,43 @@ void Graph::modifiedDijkstra(int source){
 
     // Distance from the source is always 0
     distance[source] = 0;
+    ShortestPath[source] = 1;
 
     // Finding the shortest path for all vertices
     for(int count = 0; count < numV; count++){ 
         // Pick the minimum distance from the set
         int u = MinD(distance, ShortestPathSet, numV); 
 
-        //Mark the vertex as visited->true
+        // Mark the vertex as visited->true
         ShortestPathSet[u] = true; 
         
         // Updating the values of the distances of the adjacent vertices for a specific vertex
         for(int v = 0; v < numV; v++){
-            directedEdge W = make_pair(u, v);
+        // while(isEdge(make_pair(u, v))){
+            directedEdge E = make_pair(u, v);
 
-            //Step inside iff the overall weight will be less if this path is chosen
-            if(isEdge(W) && distance[u] + getWeight(W) <= distance[v]){ 
-                // Step inside iff there is a path to the same vertex which has equal weight
-                if(distance[u] + getWeight(W) == distance[v]){
-                    if(predecesssor[v] != -1){
-                        ShortestPath[v] += 1;
-                    }
-                }
-                else{
-                    predecesssor[v] = u; 
-                    distance[v] = distance[u] + getWeight(W); 
-                    ShortestPath[v] += 1;
-                }
-                
-                // If the predecessor of a vertex has more than one shortest paths associated with it, carry this information to the next connected vertex
-                if(ShortestPath[u] > 1){
-                    ShortestPath[v] += 1;
-                }
-            }  
+            // Step inside iff the overall weight will be less if this path is chosen
+            if(isEdge(E) && distance[u] + getWeight(E) < distance[v] && distance[u] + getWeight(E) > 0){
+                predecesssor[v] = u;
+                distance[v] = distance[u] + getWeight(E);
+                ShortestPath[v] = ShortestPath[u];
+            }
+            else if(isEdge(E) && distance[u] + getWeight(E) == distance[v]){
+                ShortestPath[v] += ShortestPath[u];
+            }
         }
-       
     } 
     
     // Printing the output for the shortest distances to each vertex from the source and the number of shortest paths associated with those distances
     cout << "\nShortest paths from node " << source << ":" << endl;
     for(int i = 0; i < getNumVertices(); i++){
         if(i != source){
-            cout << "Distance to vertex " << i << " is " << distance[i] << " and there are " << ShortestPath[i] << " shortest paths" << endl;
+            if(distance[i] == INT_MAX){
+                cout << "Distance to vertex " << i << " is INF and there are " << ShortestPath[i] << " shortest paths" << endl;
+            }
+            else{
+                cout << "Distance to vertex " << i << " is " << distance[i] << " and there are " << ShortestPath[i] << " shortest paths" << endl;
+            }
         }
     }
 }

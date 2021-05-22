@@ -17,7 +17,7 @@ int main(int argc, const char * argv[]) {
 
     // for part (b)
     graph1.modifiedDijkstra(0);
-
+    
     cout << "\n\n---------------TEST 2-------------" << endl;
     Graph graph2;
     // for part (a)
@@ -26,7 +26,7 @@ int main(int argc, const char * argv[]) {
 
     // for part (b)
     graph2.modifiedDijkstra(0);
-
+    
     cout << "\n\n---------------TEST 3-------------" << endl;
     Graph graph3;
     // for part (a)
@@ -35,7 +35,7 @@ int main(int argc, const char * argv[]) {
 
     // for part (b)
     graph3.modifiedDijkstra(1);
-
+    
     cout << "\n\n---------------TEST 4-------------" << endl;
     Graph graph4;
     // for part (a)
@@ -44,6 +44,6 @@ int main(int argc, const char * argv[]) {
 
     // for part (b)
     graph4.modifiedDijkstra(0);
-
+    
     return 0;
 }
