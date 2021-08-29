@@ -1,0 +1,2 @@
+SmallData.txt filter=lfs diff=lfs merge=lfs -text
+BigData.txt filter=lfs diff=lfs merge=lfs -text
