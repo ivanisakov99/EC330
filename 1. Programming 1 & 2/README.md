@@ -4,7 +4,7 @@ Write a C++ program which receives a file name as command line argument, reads a
 
 For example, suppose that you compile your program to the executable Problem4, your program should be run from the command line as follows:
 
-    > Problem4 TextFile.txt
+    > Problem1 TextFile.txt
   
 For the provided sample input file, TextFile.txt, your program should print the following output:
 
@@ -22,6 +22,6 @@ Your main function should receive an integer as a command-line argument, call th
 
 For example, suppose that you compile your program to the executable Problem5, for the integer 20, your program should be run as follows:
 
-    > Problem5 20
+    > Problem2 20
 
 You MUST use only recursion for this problem. You may not use iteration (no for, while, or do-while loops).
