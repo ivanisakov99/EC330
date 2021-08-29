@@ -65,3 +65,57 @@ Your program should be executed from the command-line with an input file name as
     Distance to vertex 4 is 16 and there are 1 shortest paths 
     Distance to vertex 5 is 8 and there are 1 shortest paths
  
+### <ins>Expected Outputs:</ins>
+
+    Test Case 0:
+    0: 2 (13) 4 (16) 5 (8) 
+    1: 3 (6) 5 (10) 
+    2: 3 (14) 5 (11) 
+    3: 4 (5) 5 (17) 
+    4: 1 (9) 5 (7) 
+    5: 
+
+    Test Case 1:
+    Shortest paths from node 0:
+    Distance to vertex 1 is 25 and there are 1 shortest paths
+    Distance to vertex 2 is 13 and there are 1 shortest paths
+    Distance to vertex 3 is 27 and there are 1 shortest paths
+    Distance to vertex 4 is 16 and there are 1 shortest paths
+    Distance to vertex 5 is 8 and there are 1 shortest paths
+
+    Test Case 2:
+    0: 1 (1) 2 (2) 3 (15) 
+    1: 2 (1) 
+    2: 3 (1) 
+    3: 
+
+    Shortest paths from node 0:
+    Distance to vertex 1 is 1 and there are 1 shortest paths
+    Distance to vertex 2 is 2 and there are 2 shortest paths
+    Distance to vertex 3 is 3 and there are 2 shortest paths
+
+    Test Case 3:
+    0: 1 (1) 2 (2) 3 (15) 
+    1: 2 (1) 
+    2: 3 (1) 
+    3: 
+
+    Shortest paths from node 1:
+    Distance to vertex 0 is INF and there are 0 shortest paths
+    Distance to vertex 2 is 1 and there are 1 shortest paths
+    Distance to vertex 3 is 2 and there are 1 shortest paths
+
+    Test Case 4:
+    0: 1 (2) 2 (2) 
+    1: 3 (2) 
+    2: 3 (2) 
+    3: 4 (2) 
+    4: 
+    5: 0 (2) 
+
+    Shortest paths from node 0:
+    Distance to vertex 1 is 2 and there are 1 shortest paths
+    Distance to vertex 2 is 2 and there are 1 shortest paths
+    Distance to vertex 3 is 4 and there are 2 shortest paths
+    Distance to vertex 4 is 6 and there are 2 shortest paths
+    Distance to vertex 5 is INF and there are 0 shortest paths
