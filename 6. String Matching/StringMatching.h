@@ -191,14 +191,14 @@ void fourB(string file){
         }
     }
     dictionary.close();
-    
+    cout << countW << endl;
 
 	// Open up the data text file and get the string text for each time there is a space
     int num_of_words = 0;
     ifstream data(file);
     while(getline(data, line, ' ')){
         
-	// starting from the start of your string text, you iterate through to find any word
+	    // starting from the start of your string text, you iterate through to find any word
         for(int i = 0; i < line.length(); i++){
 		    // this for loop allows you to make substrings 
             for(int j = 1; j < line.length() - i + 1; j++){

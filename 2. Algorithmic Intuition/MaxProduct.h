@@ -7,9 +7,7 @@ using namespace std;
 
 class MaxProductClass{
     public:
-
         long MaxProduct(string filename);
-
 };
 
 #endif
